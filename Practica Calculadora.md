@@ -21,6 +21,7 @@ Para este proyecto utilizamos **Flet**, una librería que permite construir apli
 Se requiere ejecutar el siguiente comando en la terminal para instalar la librería:
 ```bash
 pip install flet
+```
 2. Estructura de la Interfaz (UI)
 El diseño se construye mediante la composición de "Controles" (Widgets). Los principales utilizados fueron:
 
@@ -43,12 +44,14 @@ La interactividad se logra conectando la interfaz con funciones de Python median
 
 A. El Evento on_click y data
 En lugar de crear una función diferente para cada número, usamos una propiedad inteligente llamada data:
+```
 # Ejemplo de configuración del botón
 boton = ft.Container(
     content=ft.Text("1"),
     on_click=agregar_numero,  # Todos llaman a la misma función
     data="1"                  # Cada uno lleva su propio valor
 )
+```
 B. Función de Captura
 La función agregar_numero(e) recupera el valor del botón presionado:
 
@@ -65,4 +68,6 @@ Una función simple que restablece el valor del display a "0".
 Asegúrate de estar en la carpeta del proyecto.
 
 Ejecuta el archivo principal:
+```
 python main.py
+```
