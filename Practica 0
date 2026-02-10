@@ -9,8 +9,8 @@ Para este proyecto utilizamos **Python** como lenguaje base y **Flet** como libr
 ### Instalación
 Se requiere tener Python instalado. Posteriormente, se instala Flet mediante el gestor de paquetes `pip`:
 
-```bash
 pip install flet
+
 2. Apunte de Desarrollo: Estructura de la Interfaz
 El desarrollo de la calculadora se divide en tres secciones principales: configuración, diseño visual (UI) y lógica (Backend).
 
