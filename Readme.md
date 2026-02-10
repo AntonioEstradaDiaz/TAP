@@ -1,51 +1,68 @@
-# Calculadora TAP con Flet
+# 🧮 Calculadora Básica con Flet y Python
 
-Este proyecto consiste en el desarrollo de una interfaz gráfica de usuario (GUI) para una calculadora básica utilizando Python y el framework Flet.
+> **Materia:** Tópicos Avanzados de Programación (TAP)  
+> **Práctica:** 0 - Introducción a Flet
 
-## 1. Preparación del Entorno
+Este proyecto consiste en el desarrollo de una interfaz gráfica de usuario (GUI) para una calculadora funcional, utilizando **Python** como lenguaje base y **Flet** como framework visual.
 
-Para este proyecto utilizamos **Python** como lenguaje base y **Flet** como librería de interfaz, la cual permite crear aplicaciones multiplataforma (Web, Desktop, Móvil) con un solo código base.
+---
 
-### Instalación
-Se requiere tener Python instalado. Posteriormente, se instala Flet mediante el gestor de paquetes `pip`:
+## 📸 Vista Previa
+*(Aquí puedes subir una captura de tu calculadora funcionando si deseas)*
 
+---
+
+## 📝 Apunte de Desarrollo
+
+### 1. Preparación del Entorno
+Para este proyecto utilizamos **Flet**, una librería que permite construir aplicaciones web, de escritorio y móviles con el mismo código base en Python.
+
+**Instalación:**
+Se requiere ejecutar el siguiente comando en la terminal para instalar la librería:
+```bash
 pip install flet
+2. Estructura de la Interfaz (UI)
+El diseño se construye mediante la composición de "Controles" (Widgets). Los principales utilizados fueron:
 
-2. Apunte de Desarrollo: Estructura de la Interfaz
-El desarrollo de la calculadora se divide en tres secciones principales: configuración, diseño visual (UI) y lógica (Backend).
+ft.Container: El bloque constructor fundamental.
 
-A. Componentes de la Interfaz (UI)
-Utilizamos los siguientes controles (widgets) de Flet:
+Se utilizó para crear la pantalla (display) con alineación a la derecha.
 
-ft.Container: Es el bloque fundamental. Lo usamos para crear:
+Se utilizó para crear cada botón, asignando colores, bordes redondeados y dimensiones fijas.
 
-El Display: Un contenedor con fondo oscuro y texto alineado a la derecha (alignment=ft.alignment.Alignment(1, 0)).
+ft.GridView: Un organizador automático.
 
-Los Botones: Contenedores con color de fondo, bordes redondeados (border_radius) y eventos de clic.
+Permite acomodar los botones en una rejilla (filas y columnas) sin tener que calcular coordenadas manuales (runs_count=2).
 
-ft.GridView: Un organizador que coloca los botones automáticamente en una rejilla. Configuramos runs_count=2 para tener 2 columnas.
+ft.Column: El layout principal.
 
-ft.Column: Un layout vertical que apila el display, la rejilla de botones y el botón de limpiar en orden descendente.
+Apila verticalmente el display, la rejilla de botones y el botón de "Limpiar".
 
-B. Lógica y Manejo de Eventos
-La interactividad de la calculadora se logra mediante el evento on_click y el manejo del estado de la página.
+3. Lógica y Eventos (Backend)
+La interactividad se logra conectando la interfaz con funciones de Python mediante eventos.
 
-Captura de datos (data): A cada botón se le asigna una propiedad data (ej. data="1"). Esto nos permite identificar qué botón fue presionado sin crear una función diferente para cada uno.
+A. El Evento on_click y data
+En lugar de crear una función diferente para cada número, usamos una propiedad inteligente llamada data:
+# Ejemplo de configuración del botón
+boton = ft.Container(
+    content=ft.Text("1"),
+    on_click=agregar_numero,  # Todos llaman a la misma función
+    data="1"                  # Cada uno lleva su propio valor
+)
+B. Función de Captura
+La función agregar_numero(e) recupera el valor del botón presionado:
 
-Función btn_click(e):
+Obtiene el valor con e.control.data.
 
-Se ejecuta al hacer clic en un número.
+Actualiza la variable de texto del display.
 
-Recupera el valor usando e.control.data.
+Ejecuta page.update() para refrescar la pantalla (paso crítico en Flet).
 
-Actualiza el texto del display. Si el valor actual es "0", lo reemplaza; si no, concatena el nuevo número.
+C. Función Limpiar
+Una función simple que restablece el valor del display a "0".
 
-Función limpiar(e):
+🚀 Cómo ejecutar el proyecto
+Asegúrate de estar en la carpeta del proyecto.
 
-Restablece el valor del display a "0".
-
-Actualización de la UI (page.update()): Es crucial llamar a page.update() al final de cada función de evento para que los cambios visuales se reflejen en la ventana.
-
-3. Ejecución del Proyecto
-Para correr la aplicación, asegúrate de estar en el directorio del proyecto y ejecuta:
+Ejecuta el archivo principal:
 python main.py
